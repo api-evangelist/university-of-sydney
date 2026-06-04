@@ -1,0 +1,49 @@
+---
+name: University of Sydney
+description: University of Sydney public developer/API footprint review for APIs.json cataloging.
+url: https://raw.githubusercontent.com/api-evangelist/university-of-sydney/refs/heads/main/review.yml
+created: '2026-06-03'
+modified: '2026-06-03'
+reviews:
+  - date: '2026-06-03'
+    rating: 2
+    summary: >-
+      No central public developer portal or openly documented API program was
+      found for the University of Sydney. Verified live: the official website,
+      the Primo discovery layer, the myUni student portal, and the ServiceNow
+      service portal all returned HTTP 200. The library runs on Ex Libris Alma
+      and Primo, whose APIs require an institution-issued key. The Sydney
+      eScholarship Repository OAI-PMH endpoint is documented but returned HTTP
+      403 to automated requests (bot-blocked, not necessarily dead). The myUni
+      student APIs are authenticated and gated. The Sydney Informatics Hub
+      GitHub org is real (research/training code, not API products); the usyd
+      GitHub org exists but is private. No endpoints were fabricated; all rows
+      below were probed directly.
+    endpoints:
+      - url: https://www.sydney.edu.au/
+        status: 200
+        note: Official university website (live).
+      - url: https://www.library.sydney.edu.au/
+        status: 200
+        note: University Library site (live).
+      - url: https://sydney.primo.exlibrisgroup.com/
+        status: 200
+        note: Ex Libris Primo discovery layer (live); Alma/Primo APIs are key-gated.
+      - url: https://ses.library.usyd.edu.au/oai/request?verb=Identify
+        status: 403
+        note: Sydney eScholarship OAI-PMH endpoint; documented but bot-blocked to automated fetch.
+      - url: https://myuni.sydney.edu.au/
+        status: 200
+        note: myUni student portal (live); backing APIs require authenticated session.
+      - url: https://sydneyuni.service-now.com/sm
+        status: 200
+        note: ServiceNow service/knowledge portal (live).
+      - url: https://github.com/Sydney-Informatics-Hub
+        status: 200
+        note: Sydney Informatics Hub GitHub org (research/training code, not API products).
+      - url: https://github.com/usyd
+        status: 200
+        note: usyd GitHub org exists but has no public members/repos.
+      - url: https://au.linkedin.com/school/university-of-sydney/
+        status: 999
+        note: Official LinkedIn school page; 999 is LinkedIn bot-block, page is live in browser.

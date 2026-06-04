@@ -1,0 +1,92 @@
+---
+aid: university-of-sydney
+name: University of Sydney
+description: >-
+  The University of Sydney is Australia's first university, founded in 1850, and
+  is ranked #32 in the QS World University Rankings 2025. Its public digital
+  footprint centers on student, library, and research-data services rather than
+  a formal, openly documented developer API program. The library runs on Ex
+  Libris Alma and Primo (which expose vendor APIs and OAI-PMH), the Sydney
+  eScholarship Repository offers an OAI-PMH metadata interface, and the myUni
+  student portal is backed by internal authenticated APIs. Most institutional
+  APIs are gated behind authentication or vendor key issuance, and no central
+  public developer portal was found at time of review.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/university-of-sydney/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - Library
+  - Research
+  - Open Data
+  - Australia
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
+apis:
+  - aid: university-of-sydney:escholarship-oai
+    name: Sydney eScholarship Repository (OAI-PMH)
+    description: >-
+      The University of Sydney's institutional repository, Sydney eScholarship,
+      exposes an OAI-PMH metadata harvesting interface for open-access theses,
+      research outputs, and digital collections. The interface follows the
+      standard OAI-PMH 2.0 verbs (Identify, ListRecords, ListSets, GetRecord).
+      Automated requests may be rate-limited or require a descriptive
+      User-Agent.
+    humanURL: https://ses.library.usyd.edu.au/
+    baseURL: https://ses.library.usyd.edu.au/oai/request
+    tags: [ Library, Repository, OAI-PMH, Metadata, Open Access ]
+    properties:
+      - type: Documentation
+        url: https://ses.library.usyd.edu.au/
+  - aid: university-of-sydney:primo-alma
+    name: Library Discovery (Ex Libris Primo / Alma)
+    description: >-
+      The University of Sydney Library runs on the Ex Libris Alma library
+      services platform with the Primo discovery layer. Ex Libris provides
+      documented Alma REST APIs and Primo Search/PNX APIs, but access requires
+      an institution-issued API key via the Ex Libris Developer Network; these
+      are not openly published by the university.
+    humanURL: https://sydney.primo.exlibrisgroup.com/
+    tags: [ Library, Discovery, Alma, Primo, Vendor ]
+    properties:
+      - type: Documentation
+        url: https://developers.exlibrisgroup.com/
+  - aid: university-of-sydney:myuni
+    name: myUni Student Portal API (gated)
+    description: >-
+      The myUni student portal is backed by internal JSON APIs (for example
+      student degrees and credits) used by the authenticated student web
+      application. These endpoints require an active student session and are not
+      publicly documented or available to third-party developers.
+    humanURL: https://myuni.sydney.edu.au/
+    tags: [ Student, SIS, Gated, Authentication ]
+    properties:
+      - type: Documentation
+        url: https://myuni.sydney.edu.au/
+common:
+  - type: Website
+    url: https://www.sydney.edu.au/
+  - type: GitHub
+    url: https://github.com/Sydney-Informatics-Hub
+  - type: LinkedIn
+    url: https://au.linkedin.com/school/university-of-sydney/
+  - type: Library
+    url: https://www.library.sydney.edu.au/
+  - type: ServicePortal
+    url: https://sydneyuni.service-now.com/sm
+  - type: Plans
+    url: plans/university-of-sydney-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/university-of-sydney-rate-limits.yml
+  - type: FinOps
+    url: finops/university-of-sydney-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
