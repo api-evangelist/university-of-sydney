@@ -1,0 +1,80 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "usyd": "https://www.sydney.edu.au/ns#",
+    "oai": "http://www.openarchives.org/OAI/2.0/",
+    "name": "name",
+    "url": "url",
+    "description": "description",
+    "sameAs": "sameAs",
+    "logo": "logo",
+    "foundingDate": "foundingDate",
+    "address": "address",
+    "department": "department",
+    "Organization": "CollegeOrUniversity",
+    "library": {
+      "@id": "usyd:library",
+      "@type": "Library"
+    },
+    "repository": {
+      "@id": "usyd:repository",
+      "@type": "DigitalDocument"
+    },
+    "api": {
+      "@id": "usyd:api",
+      "@type": "WebAPI"
+    },
+    "apiName": {
+      "@id": "name",
+      "@type": "Text"
+    },
+    "humanURL": {
+      "@id": "url",
+      "@type": "@id"
+    },
+    "baseURL": {
+      "@id": "usyd:baseURL",
+      "@type": "@id"
+    },
+    "metadataFormat": {
+      "@id": "usyd:metadataFormat",
+      "@type": "Text"
+    },
+    "set": {
+      "@id": "usyd:set",
+      "@type": "Text"
+    },
+    "record": {
+      "@id": "usyd:record",
+      "@type": "CreativeWork"
+    }
+  },
+  "@type": "CollegeOrUniversity",
+  "name": "University of Sydney",
+  "url": "https://www.sydney.edu.au/",
+  "foundingDate": "1850",
+  "sameAs": [
+    "https://au.linkedin.com/school/university-of-sydney/",
+    "https://github.com/Sydney-Informatics-Hub"
+  ],
+  "department": [
+    {
+      "@type": "Library",
+      "name": "University of Sydney Library",
+      "url": "https://www.library.sydney.edu.au/",
+      "api": [
+        {
+          "@type": "WebAPI",
+          "apiName": "Sydney eScholarship Repository (OAI-PMH)",
+          "humanURL": "https://ses.library.usyd.edu.au/",
+          "baseURL": "https://ses.library.usyd.edu.au/oai/request"
+        },
+        {
+          "@type": "WebAPI",
+          "apiName": "Library Discovery (Ex Libris Primo / Alma)",
+          "humanURL": "https://sydney.primo.exlibrisgroup.com/"
+        }
+      ]
+    }
+  ]
+}
