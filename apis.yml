@@ -12,9 +12,21 @@ description: >-
   APIs are gated behind authentication or vendor key issuance, and no central
   public developer portal was found at time of review.
 type: Index
+accessModel:
+  pricing: free
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Free
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/university-of-sydney.png
 url: https://raw.githubusercontent.com/api-evangelist/university-of-sydney/refs/heads/main/apis.yml
 tags:
   - Education
