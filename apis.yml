@@ -132,7 +132,18 @@ apis:
       application. Those endpoints require an established student session, are not documented, and
       are not available to third-party developers. Institution-operated, entirely gated.
     humanURL: https://myuni.sydney.edu.au/
-    tags: [ Student, SIS, Gated, Authentication, Portal ]
+    tags:
+    - Students
+    - SIS
+    - Gated
+    - Authentication
+    - Portal
+    tags_raw:
+    - Student
+    - SIS
+    - Gated
+    - Authentication
+    - Portal
     properties:
       - type: Authentication
         url: authentication/university-of-sydney-authentication.yml
