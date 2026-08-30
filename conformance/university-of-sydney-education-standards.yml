@@ -1,0 +1,159 @@
+specification: API Evangelist Domain Standard Conformance
+specificationVersion: '0.1'
+provider: University of Sydney
+providerId: university-of-sydney
+regime: education
+regimeName: Education & Research
+generated: '2026-08-19'
+method: probed
+source: >-
+  Live probes of University of Sydney hosts plus authoritative third-party registries
+  (Australian Access Federation metadata, eduGAIN metadata aggregate, DataCite REST API,
+  Crossref REST API). Every row below records the exact location the evidence was read from.
+description: >-
+  Conformance evidence for the Kin Score `education` regulatory regime standards
+  (scim, lti, oneroster, ed-fi, caliper, qti, oai-pmh, shibboleth, saml, orcid, datacite,
+  crossref) as they apply to the University of Sydney. Reward-only: a standard is recorded
+  as `conformant` ONLY where a machine-readable artifact or an authoritative registry record
+  was retrieved. Standards with no evidence are recorded as `not_found`, not as a failure.
+notes: >-
+  The institution publishes no OpenAPI, so no standard here is read from a contract. Every
+  `conformant` row below is read from a machine-readable artifact the institution itself
+  serves (SAML metadata) or from a registry record naming the institution as the operator
+  (DataCite client, Crossref member).
+standards:
+- id: shibboleth
+  name: Shibboleth Identity Provider
+  status: conformant
+  operator: tenant
+  operatorNote: >-
+    The federation entity is the University of Sydney's, but federation.sydney.edu.au CNAMEs to
+    d007b274d34f1a4319cafeaf6941cfa7.idp-cname.aaf.edu.au and answers from CloudFront + an AWS ALB
+    running Jetty 12.1.0 under an Amazon-issued certificate. That is the Australian Access
+    Federation's hosted Rapid IdP service. Conformance is real and institutional; the running
+    software is AAF's.
+  evidence:
+    url: https://federation.sydney.edu.au/idp/shibboleth
+    status: 200
+    contentType: application/xml;charset=utf-8
+    detail: >-
+      Live Shibboleth IdP metadata served by the institution. Carries the Shibboleth metadata
+      extension namespace urn:mace:shibboleth:metadata:1.0 with <shibmd:Scope regexp="false">
+      sydney.edu.au</shibmd:Scope>, an idp-signing.crt X509 key descriptor, and three
+      SingleSignOnService bindings.
+    verified: '2026-08-19'
+- id: saml
+  name: SAML 2.0
+  status: conformant
+  operator: tenant
+  operatorNote: >-
+    Same host as `shibboleth` above — AAF-hosted Rapid IdP under a University of Sydney hostname.
+    The entityID, the shibmd:Scope and the idp-signing.crt key (self-issued 2018,
+    CN=federation.sydney.edu.au) are the institution's.
+  evidence:
+    url: https://federation.sydney.edu.au/idp/shibboleth
+    status: 200
+    detail: >-
+      EntityDescriptor entityID="https://federation.sydney.edu.au/idp/shibboleth" with an
+      IDPSSODescriptor advertising protocolSupportEnumeration
+      urn:oasis:names:tc:SAML:2.0:protocol and SAML2 Redirect, POST and POST-SimpleSign
+      SingleSignOnService endpoints.
+    verified: '2026-08-19'
+  registryEvidence:
+  - url: https://md.aaf.edu.au/aaf-metadata.xml
+    status: 200
+    detail: >-
+      Australian Access Federation signed metadata aggregate (3.1 MB, 359 entities) contains
+      entityID https://federation.sydney.edu.au/idp/shibboleth with
+      OrganizationDisplayName "The University of Sydney". The same aggregate also carries the
+      institution-operated service provider https://sho.sydney.edu.au/shibboleth.
+  - url: https://mds.edugain.org/edugain-v2.xml
+    status: 200
+    detail: >-
+      eduGAIN interfederation metadata aggregate contains federation.sydney.edu.au,
+      confirming the institution's IdP is published beyond its national federation.
+- id: datacite
+  name: DataCite DOI Registration
+  status: conformant
+  operator: institution
+  evidence:
+    url: https://api.datacite.org/clients/ardcx.usyd
+    status: 200
+    detail: >-
+      DataCite repository client ARDCX.USYD, name "Sydney eScholarship",
+      url https://ses.library.usyd.edu.au/, clientType repository, registered 2020-05-14.
+      Administrative contacts are @sydney.edu.au addresses, confirming the institution
+      operates the repository rather than a vendor.
+    verified: '2026-08-19'
+  volume:
+    dois: 2146
+    source: https://api.datacite.org/dois?client-id=ardcx.usyd
+- id: crossref
+  name: Crossref DOI Registration
+  status: conformant
+  operator: institution
+  evidence:
+    url: https://api.crossref.org/members/12184
+    status: 200
+    detail: >-
+      Crossref member 12184, primary-name "The University of Sydney Library",
+      location "Sydney, New South Wales, Australia", DOI prefix 10.30722.
+    verified: '2026-08-19'
+  volume:
+    dois: 654
+    prefix: '10.30722'
+- id: oai-pmh
+  name: OAI-PMH 2.0
+  status: claimed_unverified
+  operator: institution
+  evidence:
+    url: https://ses.library.usyd.edu.au/oai/request?verb=Identify
+    status: 403
+    detail: >-
+      The Sydney eScholarship Repository documents an OAI-PMH 2.0 harvesting interface on the
+      institution's own host, but the endpoint is behind Cloudflare bot management and
+      returned 403 to every automated request tried on 2026-08-19 (default UA, browser UA,
+      XML Accept header). robots.txt at the same host returned 200 and allows /handle/2123/
+      with Crawl-delay 30, so the host is LIVE, not dead. Conformance cannot be asserted from
+      an Identify response we were never served, so this is recorded as claimed, not conformant.
+    verified: '2026-08-19'
+- id: lti
+  name: Learning Tools Interoperability
+  status: not_found
+  operator: unresolved
+  detail: >-
+    Cogniti (cogniti.ai), an AI teaching-agent platform built by a University of Sydney team,
+    advertises LTI embedding into an LMS, and the institution runs a Canvas tenant
+    (canvas.sydney.edu.au CNAMEs to sydney-vanity.instructure.com) which is LTI-capable.
+    Neither is an institution-published contract, and no LTI registration or tool
+    configuration document was retrieved, so no conformance is claimed.
+- id: scim
+  name: SCIM
+  status: not_found
+- id: oneroster
+  name: OneRoster
+  status: not_found
+- id: ed-fi
+  name: Ed-Fi
+  status: not_found
+- id: caliper
+  name: Caliper Analytics
+  status: not_found
+- id: qti
+  name: QTI
+  status: not_found
+- id: orcid
+  name: ORCID
+  status: not_found
+  detail: >-
+    A ROR-scoped query of the ORCID public API (pub.orcid.org/v3.0/search/?q=ror-org-id:"0384j8v12")
+    returned num-found 0, and no institution-operated ORCID integration endpoint was found.
+identifiers:
+  ror: https://ror.org/0384j8v12
+  crossrefMemberId: '12184'
+  crossrefPrefix: '10.30722'
+  dataciteClient: ARDCX.USYD
+  samlEntityId: https://federation.sydney.edu.au/idp/shibboleth
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

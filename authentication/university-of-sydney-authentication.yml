@@ -1,0 +1,87 @@
+specification: API Commons Authentication
+specificationVersion: '0.1'
+provider: University of Sydney
+providerId: university-of-sydney
+generated: '2026-08-19'
+method: probed
+source: >-
+  Live fetch of https://federation.sydney.edu.au/idp/shibboleth, the Australian Access
+  Federation metadata aggregate, the eduGAIN metadata aggregate, and DNS/redirect tracing of
+  canvas.sydney.edu.au, sso.sydney.edu.au and myuni.sydney.edu.au.
+description: >-
+  The University of Sydney publishes no public API authentication scheme, because it publishes
+  no public API. What it does operate — and what is genuinely machine-readable — is federated
+  identity: a Shibboleth SAML 2.0 identity provider registered in the Australian Access
+  Federation and republished into eduGAIN, plus an Okta tenant fronting web application sign-in.
+  Every application surface reachable from the public internet redirects into one of these two.
+notes: >-
+  No OAuth 2.0 authorization server, no API key issuance process, and no developer credential
+  self-service was found on any institution host. Ex Libris Alma/Primo API keys for the
+  library platform are issued by the vendor through the Ex Libris Developer Network, not by
+  the university.
+schemes:
+- id: saml2-shibboleth-idp
+  name: SAML 2.0 / Shibboleth (Australian Access Federation)
+  type: federated-identity
+  operator: tenant
+  vendor: Australian Access Federation (Rapid IdP)
+  hosting: >-
+    federation.sydney.edu.au CNAMEs to d007b274d34f1a4319cafeaf6941cfa7.idp-cname.aaf.edu.au,
+    served through CloudFront and an AWS ALB by Jetty 12.1.0 under an Amazon-issued certificate.
+    AAF operates the identity-provider software; the University of Sydney owns the entity, the
+    scope sydney.edu.au and the SAML signing key.
+  metadataUrl: https://federation.sydney.edu.au/idp/shibboleth
+  entityId: https://federation.sydney.edu.au/idp/shibboleth
+  scope: sydney.edu.au
+  protocols:
+  - urn:oasis:names:tc:SAML:2.0:protocol
+  bindings:
+  - https://federation.sydney.edu.au/idp/profile/SAML2/Redirect/SSO
+  - https://federation.sydney.edu.au/idp/profile/SAML2/POST/SSO
+  - https://federation.sydney.edu.au/idp/profile/SAML2/POST-SimpleSign/SSO
+  federations:
+  - name: Australian Access Federation
+    metadata: https://md.aaf.edu.au/aaf-metadata.xml
+    status: 200
+  - name: eduGAIN
+    metadata: https://mds.edugain.org/edugain-v2.xml
+    status: 200
+  audience: >-
+    Staff, students and federated research services. Relying parties must be registered
+    service providers in AAF or eduGAIN; there is no self-service registration for third-party
+    developers.
+  verified: '2026-08-19'
+- id: okta-web-sso
+  name: Okta hosted sign-in (institution tenant)
+  type: oidc-saml-broker
+  operator: tenant
+  host: sso.sydney.edu.au
+  resolves: sydneyuni.customdomains.okta.com
+  detail: >-
+    sso.sydney.edu.au is a vanity hostname CNAMEd to the institution's Okta tenant. It brokers
+    sign-in for institution web applications; canvas.sydney.edu.au redirects into it with a
+    SAMLRequest. The contract is Okta's, the tenant is the university's.
+  verified: '2026-08-19'
+- id: session-gated-app-apis
+  name: Session-gated application APIs
+  type: session-cookie
+  operator: institution
+  hosts:
+  - myuni.sydney.edu.au
+  detail: >-
+    The myUni student portal is backed by internal JSON endpoints consumed by the
+    authenticated single-page application. They require an established student session, are
+    not documented, and are not offered to third-party developers.
+  verified: '2026-08-19'
+- id: vendor-issued-api-keys
+  name: Vendor-issued API keys (Ex Libris)
+  type: api-key
+  operator: vendor
+  issuer: https://developers.exlibrisgroup.com/
+  detail: >-
+    Alma and Primo API keys covering the university's library data are issued by Ex Libris to
+    the institution through the Ex Libris Developer Network. The university does not publish or
+    re-issue them.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
