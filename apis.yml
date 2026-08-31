@@ -144,7 +144,7 @@ apis:
       are not available to third-party developers. Institution-operated, entirely gated.
     humanURL: https://myuni.sydney.edu.au/
     tags:
-    - Students
+    - Student
     - SIS
     - Gated
     - Authentication
