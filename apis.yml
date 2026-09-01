@@ -111,7 +111,22 @@ apis:
       OAI-PMH conformance is therefore recorded as claimed and unverified.
     humanURL: https://ses.library.usyd.edu.au/
     baseURL: https://ses.library.usyd.edu.au/oai/request
-    tags: [ Research Repository, OAI-PMH, DataCite, DSpace, Open Access, Metadata, Bot-Blocked ]
+    tags:
+    - Research Repository
+    - OAI-PMH
+    - DataCite
+    - DSpace
+    - Open Access
+    - Metadata
+    - Bot Blocked
+    tags_raw:
+    - Research Repository
+    - OAI-PMH
+    - DataCite
+    - DSpace
+    - Open Access
+    - Metadata
+    - Bot-Blocked
     properties:
       - type: Documentation
         url: https://www.library.sydney.edu.au/support/publishing/publishing-research-data
@@ -144,7 +159,7 @@ apis:
       are not available to third-party developers. Institution-operated, entirely gated.
     humanURL: https://myuni.sydney.edu.au/
     tags:
-    - Student
+    - Students
     - SIS
     - Gated
     - Authentication
