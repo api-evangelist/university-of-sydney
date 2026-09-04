@@ -47,7 +47,7 @@ accessModel:
   - probed
   generated: '2026-08-19'
   method: probed
-position: Consumer
+position: Consuming
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/university-of-sydney.png
 url: https://raw.githubusercontent.com/api-evangelist/university-of-sydney/refs/heads/main/apis.yml
