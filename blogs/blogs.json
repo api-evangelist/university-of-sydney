@@ -2,20 +2,20 @@
   "repo": "university-of-sydney",
   "feeds": [
     {
-      "source": "https://www.sydney.edu.au/news-opinion.html",
-      "feed_url": "https://www.sydney.edu.au/news-opinion.html",
+      "source": "https://www.sydney.edu.au/",
+      "feed_url": "https://www.sydney.edu.au/",
       "title": "",
       "saved": 0,
       "method": "none"
     },
     {
-      "source": "https://www.sydney.edu.au/",
-      "feed_url": "https://www.sydney.edu.au/",
+      "source": "https://www.sydney.edu.au/news-opinion.html",
+      "feed_url": "https://www.sydney.edu.au/news-opinion.html",
       "title": "",
       "saved": 0,
       "method": "none"
     }
   ],
   "post_count": 0,
-  "fetched": "2026-08-30T22:33:40Z"
+  "fetched": "2026-09-06T19:17:18Z"
 }
